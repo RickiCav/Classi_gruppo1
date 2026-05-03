@@ -33,7 +33,7 @@ public:
     bool CheckID(int idS, int idB);
 
 
-    // metodi per ottenre ongi dato
+    // metodi per ottenre ogni dato
     Attuatore* getAttuatore(int idS, int n);
     Sensore* getSensore(int ids, int n);
     int getTarghet(int ids, int n);
