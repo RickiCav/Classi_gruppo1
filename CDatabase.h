@@ -6,7 +6,7 @@
 class Database {
 protected:
     Attuatore*** MAttuatori;
-    Sensore*** MSensori;
+    Sensor*** MSensori;
     int** MTarghet;
     int** MAccesso;
     int* STDAccNeutro;
@@ -19,7 +19,7 @@ public:
     virtual ~Database(); // distruttore
 
     // metodi per creare e modificare i dati
-    int SetNewStanza(Sensore** Sensori, Attuatore** Attuatori, int tipo);
+    int SetNewStanza(Sensor** Sensori, Attuatore** Attuatori, int tipo);
     void SetNewAccesso(int idS,int idB);
     void EliminateAccesso(int idS,int idB);
     void SetNewSTDAccesso(int idB, int tipo);
@@ -35,7 +35,7 @@ public:
 
     // metodi per ottenre ogni dato
     Attuatore* getAttuatore(int idS, int n);
-    Sensore* getSensore(int ids, int n);
+    Sensor* getSensore(int ids, int n);
     int getTarghet(int ids, int n);
     void AccessDump(int ids);
     void AccessDump();
