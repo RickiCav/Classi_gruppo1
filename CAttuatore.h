@@ -1,28 +1,60 @@
+/*! \file CAttuatore.h
+    \brief Dichiarazione della classe Attuatore
+	\author Alessio Pecorari
+*/
+
 #ifndef CATTUATORE_H
 #define CATTUATORE_H
 
+using namespace std;
+
 /// @class Attuatore
-/// @brief Classe base per i dispositivi che intervengono sull'ambiente
+/// @brief classe base per i dispositivi che intervengono sull'ambiente
 class Attuatore {
 protected:
-    bool stato; /// Stato dell'attuatore: true (attivo), false (inattivo)
+
+    // stato dell'attuatore: true (attivo), false (inattivo)
+    bool stato; 
 
 public:
-    Attuatore(); // costruttore di default
-    virtual ~Attuatore(); // distruttore
 
-    // metodi virtuali per attivare/disattivare gli attuatori figli
+    /// @name CONSTRUCTORS / DESTRUCTOR
+    /// @{
+    Attuatore();
+    virtual ~Attuatore();
+    /// @}
+
+    /// @name OPERATORS
+    /// @{
+    Attuatore& operator=(const Attuatore &r);
+    bool operator==(const Attuatore &r);
+    /// @}
+
+
+    /// @name BASIC HANDLING
+    /// @{
+    void Init();
+    void Init(const Attuatore &r);
+    void Reset();
+    /// @}
+
+    /// @name GETTERS / SETTERS
+    /// @{
     virtual void Attiva();
     virtual void Disattiva();
-
-    // metodo per ottenere lo stato dell'attuatore
     bool IsAttivo() const;
+    /// @}
+
+    /// @name DEBUG and SERIALIZATION
+    /// @{
+    void ErrorMessage(const char *string);
+    void WarningMessage(const char *string);
+    void Dump();
+    /// @}
 };
 
-/// -- SOTTOCLASSI SPECIFICHE
-
 /// @class Allarme sonoro antincendio
-/// @brief Da disattivare manualmente
+/// @brief da disattivare manualmente
 class Allarme : public Attuatore {
 public:
     Allarme();
@@ -30,15 +62,15 @@ public:
 };
 
 /// @class Nebulizzatore
-/// @brief Erogatore di acqua nebulizzata per estinguere incendi
+/// @brief erogatore di acqua nebulizzata per estinguere incendi
 class Nebulizzatore : public Attuatore {
 public:
     Nebulizzatore();
-    void Disattiva() override; /// Deve essere disattivato manualmente
+    void Disattiva() override;
 };
 
 /// @class Condizionamento
-/// @brief Sistema per modificare temperatura e umidità
+/// @brief sistema per modificare temperatura e umidità
 class Condizionamento : public Attuatore {
 public:
     Condizionamento();
@@ -46,7 +78,7 @@ public:
 };
 
 /// @class Porta
-/// @brief Attuatore che consente l'apertura della porta
+/// @brief attuatore che consente l'apertura della porta
 class Porta : public Attuatore {
 public:
     Porta();
